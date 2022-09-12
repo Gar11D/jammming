@@ -1,5 +1,5 @@
-const clientID = 'bc600ec8601a4af4b763c899de99d1dc';
-const redirectURI = 'http://localhost:3000/';
+const clientID = 'ENTER CLIENT ID HERE'; //get client id from spotify account
+const redirectURI = 'http://deep-bike.surge.sh';
 
 let accessToken;
 
@@ -14,7 +14,7 @@ const Spotify = {
             /access_token=([^&]*)/
         );
         const expiresInMatch = window.location.href.match(
-            /expires_in=([^&]*)/
+            /expires_in=([^&]*)/  
         );
         
         
@@ -31,8 +31,8 @@ const Spotify = {
         }
     },
 
-    search (term) {
-        const accessToken = Spotify.getAccessToken;
+    search(term) {
+        const accessToken = Spotify.getAccessToken();
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
             headers: { 
                 Authorization: `Bearer ${accessToken}`
@@ -50,18 +50,18 @@ const Spotify = {
                 album: track.album.name,
                 uri: track.uri,
             }));
-        })
+        });
     }, 
 
     savePlaylist (name, trackUris) {
         if ( !name || !trackUris.length) {
             return;
         }
-        const accessToken = Spotify.accessToken;
+        const accessToken = Spotify.getAccessToken();
         const headers = {Authorizarion : `Bearer ${accessToken}`};
         let userId;
-
-        return fetch(`https://api.spotify.com/v1/me`, {
+ 
+        return fetch('https://api.spotify.com/v1/me', {
             headers: headers
         }).then (response => {
             response.json()
