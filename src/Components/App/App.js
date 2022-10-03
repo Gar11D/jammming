@@ -29,11 +29,15 @@ class App extends React.Component {
 
   addTrack (track) {
     let tracks = this.state.playlistTracks;
+    let newSearchResults = this.state.searchResults; //new variable for task part 2
     if (tracks.find(savedTrack => savedTrack.id === track.id)) {
       return; 
     }
     tracks.push(track);
-    this.setState({playlistTracks: tracks})
+    newSearchResults = newSearchResults.filter (x => x.id !== track.id);
+    this.setState({playlistTracks: tracks});
+    this.setState({searchResults: newSearchResults})
+    //success for spotify api part 2 codecademy project- removes search results that are in playlist
   }
 
   removeTrack (track) {
@@ -65,7 +69,7 @@ class App extends React.Component {
   render () { 
     return(
       <div>
-        <h1>Ja<span className ="highlight">mmm</span>ing</h1>
+        <h1>Ha<span className ="highlight">mmm</span>ing</h1>
         <div className="App">
             <SearchBar onSearch={this.search} />
             <div className="App-playlist">

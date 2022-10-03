@@ -1,5 +1,5 @@
-const clientID = 'ENTER CLIENT ID HERE'; //get client id from spotify account
-const redirectURI = 'http://deep-bike.surge.sh';
+const clientID = 'bc600ec8601a4af4b763c899de99d1dc'; //get client id from spotify account
+const redirectURI = 'http://localhost:3000/';
 
 let accessToken;
 
